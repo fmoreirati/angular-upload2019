@@ -7,7 +7,27 @@ import { HttpClient } from '@angular/common/http'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  onSelectFile: File = null;
+  private selectedFile: File = null;
+  private url: string = "https://clientecadteste.firebaseio.com/";
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+  }
+  onUpload() {
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name)
+    this.http.post(this.url, fd)
+      .subscribe(
+        res => {
+          console.log(res);
+        }
+      );
+  }
 }
 //http://www.fabricadecodigo.com/rest-api-ionic/
 //https://www.youtube.com/watch?v=YkvqLNcJz3Y
