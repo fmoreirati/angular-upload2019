@@ -16,7 +16,7 @@ export class AppComponent {
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
+    console.log(event);
   }
   onUpload() {
     const fd = new FormData();
