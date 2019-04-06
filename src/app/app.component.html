@@ -2,3 +2,14 @@
   <input type="file" (change)="onFileSelected($event)">
   <button type="button" (click)="onUpload()">Enviar</button> 
 </form>
+
+<script>
+var admin = require("firebase-admin");
+
+var serviceAccount = require("path/to/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://clientecadteste.firebaseio.com"
+});
+</script>

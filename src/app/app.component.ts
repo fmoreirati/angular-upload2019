@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'my-app',
@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http'
 })
 export class AppComponent {
   private selectedFile: File = null;
-  //private url: string = "https://clientecadteste.firebaseio.com/";
-  private url: string = "gs://clientecadteste.appspot.com/img";
+  private url: string = "https://clientecadteste.firebaseio.com";
+  //private url: string = "gs://clientecadteste.appspot.com";
 
   constructor(
     private http: HttpClient
