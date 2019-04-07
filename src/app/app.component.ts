@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { storage, initializeApp } from 'firebase';
+import { FIREBASE } from './firebase.config';
 
 @Component({
   selector: 'my-app',
