@@ -20,7 +20,7 @@ export class ClienteService {
 
   addCliente(cliente: Cliente) {
     let c = Object.assign({}, cliente)
-    return this.firestore.collection<Cliente>('clientes').add(cliente);
+    return this.firestore.collection<Cliente>('clientes').add(c);
   }
 
   updateCliente(cliente: Cliente, id: number) {
