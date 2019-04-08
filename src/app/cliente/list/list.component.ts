@@ -18,6 +18,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.cliente = new Cliente();
+    console.log(this.clienteService.getClientes());
     this.clientes$ = this.clienteService.getClientes();
     // this.items = db.collection('items').valueChanges();
   }
