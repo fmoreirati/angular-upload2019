@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) { initializeApp(FIREBASE) }
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];
