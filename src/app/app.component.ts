@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { storage, initializeApp } from 'firebase';
-import { FIREBASE } from './firebase.config';
 
 @Component({
   selector: 'my-app',
@@ -9,28 +7,9 @@ import { FIREBASE } from './firebase.config';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private selectedFile: File = null;
-  private url: string = "https://cadclientes2019.firebaseio.com";
-  //private url: string = "gs://cadclientes2019.appspot.com/";
 
-  constructor(
-    private http: HttpClient
-  ) { initializeApp(FIREBASE) }
+  constructor() {  }
 
-  onFileSelected(event) {
-    this.selectedFile = event.target.files[0];
-    console.log(event);
-  }
-  onUpload() {
-    const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name)
-    this.http.post(this.url, fd)
-      .subscribe(
-        res => {
-          console.log(res);
-        }
-      );
-  }
 }
 //http://www.fabricadecodigo.com/rest-api-ionic/
 //https://www.youtube.com/watch?v=YkvqLNcJz3Y

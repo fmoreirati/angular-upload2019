@@ -7,10 +7,11 @@ import { FIREBASE } from './firebase.config';
 
 
 import { AppComponent } from './app.component';
+import { EditComponent } from './cliente/edit/edit.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AngularFireModule.initializeApp(FIREBASE)],
-  declarations: [AppComponent],
+  declarations: [AppComponent, EditComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
