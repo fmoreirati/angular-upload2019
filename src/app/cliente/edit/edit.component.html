@@ -1,18 +1,18 @@
 <form action="" class="container">
 	<div class="form-group">
-		<label for="nome" class="form-control">Nome</label>
+		<label for="nome">Nome</label>
             <input type="text"class="form-control" name="nome"  [(ngModel)]="cliente.nome" required>
         </div>
         <div class="form-group">
-            <label for="email" class="form-control">E-mail</label>
+            <label for="email">E-mail</label>
             <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email" required>
         </div>
         <div class="form-group">
-            <label for="pws" class="form-control">Senha</label>
+            <label for="pws">Senha</label>
             <input type="password" class="form-control" name="pws" [(ngModel)]="cliente.pws" required>
         </div>
         <div class="form-group">
-            <label for="foro" class="form-control">Foto</label>
+            <label for="foro"></label>
             <input type="file" (change)="onFileSelected($event)">
             <button type="button" (click)="onUpload()">Enviar</button> 
         </div>
