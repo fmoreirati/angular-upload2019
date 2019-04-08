@@ -16,9 +16,9 @@ export class ClienteService {
 
   //FireBase
   getClientes() {
-   // return this.firestore.collection<Cliente[]>('clientes').snapshotChanges();
-   // return this.firestore.collection<Cliente[]>('clientes').valueChanges();
-    return this.firestore.list('clientes').snapshotChanges();
+    //return this.firestore.collection<Cliente[]>('clientes').snapshotChanges();
+    //return this.firestore.collection<Cliente[]>('clientes').valueChanges();
+    return this.firestore.list('clientes').valueChanges();
   }
 
   addCliente(cliente: Cliente) {
@@ -28,7 +28,7 @@ export class ClienteService {
 
   updateCliente(cliente: Cliente, id: number) {
     delete cliente.id;
-   // this.firestore.doc('clientes/' + id).update(cliente);
+    //this.firestore.doc('clientes/' + id).update(cliente);
     this.firestore.object('clientes/' + id).update(cliente);
   }
 
