@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
 
-  constructor() {  }
+  constructor() { }
 
 }
 //http://www.fabricadecodigo.com/rest-api-ionic/

@@ -11,17 +11,18 @@ import { FIREBASE } from './firebase.config';
 
 import { AppComponent } from './app.component';
 import { EditComponent } from './cliente/edit/edit.component';
+import { ListComponent } from './cliente/list/list.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(FIREBASE),
+    AngularFireModule.initializeApp(FIREBASE, 'ClienteCADTeste'),
     AngularFirestoreModule,
     AngularFireDatabaseModule
   ],
-  declarations: [AppComponent, EditComponent],
+  declarations: [AppComponent, EditComponent, ListComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,18 @@
+<table class="table" *ngIf="clientes$ | async as clientes">
+	<tr>
+		<th>id</th>
+		<th>Nome</th>
+		<th>E-mail</th>
+		<th>Senha</th>
+		<th>Ativo</th>
+		<th>Foto</th>
+	</tr>
+	<tr *ngFor="let cliente of clientes">
+    <td>{{cliente.id}}</td>
+    <td>{{cliente.nome}}</td>
+    <td>{{cliente.email}}</td>
+    <td>{{cliente.pws}}</td>
+    <td>{{cliente.ativo}}</td>
+    <td>{{cliente.foto}}</td>
+  </tr>
+</table>
