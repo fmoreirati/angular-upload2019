@@ -22,10 +22,17 @@ export class EditComponent implements OnInit {
     // });
   }
 
-  onSubmit() {
-    console.log(this.cliente);
-    this.clienteService.addCliente(this.cliente).then(_ => alert("OK"));
+
+
+  logForm(form) {
+    if (form.valid) {
+      this.clienteService.addCliente(this.cliente);
+      console.log(this.cliente);
+      form.reset();
+    }
   }
+
+
 
   onFileSelected(event) {
     this.cliente.foto = event.target.files[0].name;

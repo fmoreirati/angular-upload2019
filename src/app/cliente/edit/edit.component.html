@@ -1,4 +1,4 @@
-<form class="container" (submit)="onSubmit()">
+<form class="container" (ngSubmit)="logForm(fc)" #fc="ngForm">
 	<div class="form-group">
 		<label for="nome">Nome</label>
             <input type="text"class="form-control" name="nome"  [(ngModel)]="cliente.nome" required>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-group">
-          <button type="button" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
           <button type="reset" class="btn btn-primary">Cancelar</button>
         </div>
 </form>
