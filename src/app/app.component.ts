@@ -10,8 +10,8 @@ import { FIREBASE } from './firebase.config';
 })
 export class AppComponent {
   private selectedFile: File = null;
-  //private url: string = "https://cadclientes2019.firebaseio.com";
-  private url: string = "gs://cadclientes2019.appspot.com/";
+  private url: string = "https://cadclientes2019.firebaseio.com";
+  //private url: string = "gs://cadclientes2019.appspot.com/";
 
   constructor(
     private http: HttpClient
