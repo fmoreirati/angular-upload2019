@@ -1,8 +1,8 @@
 export const FIREBASE = {
-  apiKey: "AIzaSyBBQvs14EVmw4HHY8WPBjKi-OMmaPWSzds",
-  authDomain: "cadclientes2019.firebaseapp.com",
-  databaseURL: "https://cadclientes2019.firebaseio.com",
-  projectId: "cadclientes2019",
-  storageBucket: "cadclientes2019.appspot.com",
-  messagingSenderId: "258663233815"
-};
+    apiKey: "AIzaSyDzM9oRZEhTLn5a97SiIbmL3tG_dcvfgDU",
+    authDomain: "clientecadteste.firebaseapp.com",
+    databaseURL: "https://clientecadteste.firebaseio.com",
+    projectId: "clientecadteste",
+    storageBucket: "clientecadteste.appspot.com",
+    messagingSenderId: "528533846536"
+  };

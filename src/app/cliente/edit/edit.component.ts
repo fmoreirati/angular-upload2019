@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../cliente.model'
+import { ClienteService } from '../cliente.service';
+import { Cliente } from '../cliente.model';
 
 @Component({
   selector: 'app-edit',
@@ -9,23 +10,25 @@ import { Cliente } from '../cliente.model'
 
 export class EditComponent implements OnInit {
   private cliente: Cliente;
+  private clientes: Cliente[];
   private selectedFile: File = null;
-  //private url: string = "https://cadclientes2019.firebaseio.com";
-  //private url: string = "gs://cadclientes2019.appspot.com/";
 
-  constructor() { }
+  constructor(private clienteService: ClienteService) { }
 
   ngOnInit() {
-    this.cliente = new Cliente;
-    console.log(this.cliente.id);
+    this.cliente = new Cliente();
+    // this.clienteService.getClientes().subscribe(data => {
+    //   this.clientes = data;
+    // });
   }
 
   onSubmit() {
     console.log(this.cliente);
+    this.clienteService.addCliente(this.cliente).then(_ => alert("OK"));
   }
 
   onFileSelected(event) {
-    this.selectedFile = event.target.files[0];
+    this.cliente.foto = event.target.files[0].name;
     console.log(event);
   }
 

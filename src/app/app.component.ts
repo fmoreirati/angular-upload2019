@@ -13,3 +13,4 @@ export class AppComponent {
 }
 //http://www.fabricadecodigo.com/rest-api-ionic/
 //https://www.youtube.com/watch?v=YkvqLNcJz3Y
+//https://www.techiediaries.com/angular-firestore-tutorial/

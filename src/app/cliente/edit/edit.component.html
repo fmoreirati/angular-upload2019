@@ -1,4 +1,4 @@
-<form action="" class="container">
+<form class="container" (submit)="onSubmit()">
 	<div class="form-group">
 		<label for="nome">Nome</label>
             <input type="text"class="form-control" name="nome"  [(ngModel)]="cliente.nome" required>
@@ -14,11 +14,11 @@
         <div class="form-group">
             <label for="foro"></label>
             <input type="file" (change)="onFileSelected($event)">
-            <button type="button" (click)="onUpload()">Enviar</button> 
+            <!-- <button type="button" (click)="onUpload()">Enviar</button>  -->
         </div>
 
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Salvar</button>
+          <button type="button" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
           <button type="reset" class="btn btn-primary">Cancelar</button>
         </div>
 </form>
