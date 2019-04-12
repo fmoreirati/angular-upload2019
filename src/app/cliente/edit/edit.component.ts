@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
+
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cliente.model';
 
@@ -13,7 +15,10 @@ export class EditComponent implements OnInit {
   private clientes: Cliente[];
   private selectedFile: File = null;
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(
+    private clienteService: ClienteService,
+    private storage: AngularFireStorage
+    ) { }
 
   ngOnInit() {
     this.cliente = new Cliente();
@@ -39,14 +44,12 @@ export class EditComponent implements OnInit {
     console.log(event);
   }
 
-  // onUpload() {
-  //   const fd = new FormData();
-  //   fd.append('image', this.selectedFile, this.selectedFile.name)
-  //   this.http.post(this.url, fd)
-  //     .subscribe(
-  //       res => {
-  //         console.log(res);
-  //       }
-  //     );
-  // }
+  onUpload() {
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name)
+    //const file = event.target.files[0];
+    const filePath = '/img/'+ this.selectedFile.name;
+    const ref = this.storage.ref(filePath);
+    const task = ref.put(fd);
+  }
 }

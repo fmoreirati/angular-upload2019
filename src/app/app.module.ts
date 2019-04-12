@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FIREBASE } from './firebase.config';
 
 import { AppComponent } from './app.component';
@@ -20,7 +21,8 @@ import { ListComponent } from './cliente/list/list.component';
     HttpClientModule,
     AngularFireModule.initializeApp(FIREBASE, 'ClienteCADTeste'),
     AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
   ],
   declarations: [AppComponent, EditComponent, ListComponent],
   providers: [],
