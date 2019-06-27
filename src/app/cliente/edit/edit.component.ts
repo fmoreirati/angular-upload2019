@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cliente.model';
@@ -15,10 +16,12 @@ export class EditComponent implements OnInit {
   private clientes: Cliente[];
   private selectedFile: File = null;
 
+
   constructor(
     private clienteService: ClienteService,
-    private storage: AngularFireStorage
-    ) { }
+    private storage: AngularFireStorage,
+    private task: AngularFireUploadTask
+  ) { }
 
   ngOnInit() {
     this.cliente = new Cliente();
@@ -42,15 +45,25 @@ export class EditComponent implements OnInit {
   onFileSelected(event) {
     this.cliente.foto = event.target.files[0].name;
     this.selectedFile = event.target.files[0];
-    console.log(event);
+    //console.log(event);
   }
 
   onUpload() {
     const fd = new FormData();
     //fd.append('image', this.selectedFile, this.selectedFile.name)
     //const file = event.target.files[0];
-    const filePath = '/img/'+ this.selectedFile.name;
+    const filePath = '/img/' + this.selectedFile.name;
     const ref = this.storage.ref(filePath);
-    const task = ref.put(fd);
+    const task = ref.put(this.selectedFile);
+   // this.cliente.foto = this.listarImagem(filePath);
   }
+
+
+  profileUrl: Observable<string | null>;
+
+  
+  listarImagem(nome: string) {
+    return this.storage.ref('img/' + nome).getDownloadURL();
+  }
+
 }
