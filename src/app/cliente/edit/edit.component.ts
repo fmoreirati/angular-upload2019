@@ -14,21 +14,21 @@ import { Cliente } from '../cliente.model';
 
 export class EditComponent implements OnInit {
   private cliente: Cliente;
-  private clientes: Cliente[];
+  private clientes: Cliente[]=[];
   private selectedFile: File = null;
 
 
   constructor(
     private clienteService: ClienteService,
     private storage: AngularFireStorage,
-    private task: AngularFireUploadTask
+   // private task: AngularFireUploadTask
   ) { }
 
   ngOnInit() {
     this.cliente = new Cliente();
-    // this.clienteService.getClientes().subscribe(data => {
-    //   this.clientes = data;
-    // });
+    this.clienteService.getClientes().subscribe(data => {
+      this.clientes = data}
+    );
   }
 
 
@@ -41,10 +41,21 @@ export class EditComponent implements OnInit {
     }
   }
 
+  public preview:any;
 
-  onFileSelected(event) {
+  async onFileSelected(event) {
+  if (event.target.files && event.target.files[0]) {
+        const file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = e => this.preview = reader.result;
+
+        reader.readAsDataURL(file);
+    }
+
     this.cliente.foto = event.target.files[0].name;
     this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile)
   }
 
 
@@ -60,7 +71,7 @@ export class EditComponent implements OnInit {
 
   uploadFile(event) {
     const file = event.target.files[0];
-    const filePath = 'name-your-file-path-here';
+    const filePath = '/img2/';
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
@@ -68,7 +79,9 @@ export class EditComponent implements OnInit {
     this.uploadPercent = task.percentageChanges();
     // get notified when the download URL is available
     task.snapshotChanges().pipe(
-      finalize(() => this.downloadURL = fileRef.getDownloadURL())
+      finalize(
+        () => this.downloadURL = fileRef.getDownloadURL()
+      )
     )
       .subscribe()
   }

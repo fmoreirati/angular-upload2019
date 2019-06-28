@@ -16,12 +16,14 @@
             <label for="foro"></label>
             <input type="file" (change)="onFileSelected($event)">
              <button type="button" (click)="onUpload()">Enviar</button>
+              <img [src]="preview | async" alt="" width="80%">
         </div>
 
         <div class="form-group">
           <input type="file" (change)="uploadFile($event)" />
           <div>{{ uploadPercent | async }}</div>
           <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+          <img [src]="downloadURL | async" alt="" width="80%">
         </div>
 
         <div class="form-group">
