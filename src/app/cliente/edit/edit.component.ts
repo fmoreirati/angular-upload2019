@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { ClienteService } from '../cliente.service';
@@ -41,29 +42,34 @@ export class EditComponent implements OnInit {
   }
 
 
-
   onFileSelected(event) {
     this.cliente.foto = event.target.files[0].name;
     this.selectedFile = event.target.files[0];
-    //console.log(event);
   }
 
+
   onUpload() {
-    const fd = new FormData();
-    //fd.append('image', this.selectedFile, this.selectedFile.name)
-    //const file = event.target.files[0];
     const filePath = '/img/' + this.selectedFile.name;
     const ref = this.storage.ref(filePath);
     const task = ref.put(this.selectedFile);
-   // this.cliente.foto = this.listarImagem(filePath);
+    console.log(task);
   }
 
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
 
-  profileUrl: Observable<string | null>;
+  uploadFile(event) {
+    const file = event.target.files[0];
+    const filePath = 'name-your-file-path-here';
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
 
-  
-  listarImagem(nome: string) {
-    return this.storage.ref('img/' + nome).getDownloadURL();
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+    // get notified when the download URL is available
+    task.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = fileRef.getDownloadURL())
+    )
+      .subscribe()
   }
-
 }
