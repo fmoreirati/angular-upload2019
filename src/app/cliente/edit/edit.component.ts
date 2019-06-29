@@ -14,20 +14,21 @@ import { Cliente } from '../cliente.model';
 
 export class EditComponent implements OnInit {
   private cliente: Cliente;
-  private clientes: Cliente[]=[];
+  private clientes: Cliente[] = [];
   private selectedFile: File = null;
 
 
   constructor(
     private clienteService: ClienteService,
     private storage: AngularFireStorage,
-   // private task: AngularFireUploadTask
+    // private task: AngularFireUploadTask
   ) { }
 
   ngOnInit() {
     this.cliente = new Cliente();
     this.clienteService.getClientes().subscribe(data => {
-      this.clientes = data}
+      this.clientes = data
+    }
     );
   }
 
@@ -41,21 +42,23 @@ export class EditComponent implements OnInit {
     }
   }
 
-  public preview:any;
+  public preview: any;
 
-  async onFileSelected(event) {
-  if (event.target.files && event.target.files[0]) {
-        const file = event.target.files[0];
+  onFileSelected(event) {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
 
-        const reader = new FileReader();
-        reader.onload = e => this.preview = reader.result;
+      const reader = new FileReader();
+      reader.onload = e => this.preview = reader.result;
 
-        reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
+
+      this.cliente.foto = event.target.files[0].name;
+      this.selectedFile = event.target.files[0];
+      console.log(this.selectedFile)
     }
 
-    this.cliente.foto = event.target.files[0].name;
-    this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile)
+
   }
 
 
@@ -65,6 +68,7 @@ export class EditComponent implements OnInit {
     const task = ref.put(this.selectedFile);
     console.log(task);
   }
+
 
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
